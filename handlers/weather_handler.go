@@ -1,21 +1,17 @@
-// handlers/weather_handler.go
 package handlers
 
 import (
 	"encoding/json"
 	"net/http"
-	"weather-app/models" // Update import path based on your project structure
+	"weather-app/models"
 )
 
 func WeatherHandler(w http.ResponseWriter, r *http.Request) {
 
-	// Get the query parameter from the URL
 	query := r.URL.Query().Get("query")
 
-	// Fetch weather data from the model
 	weatherData, err := models.GetWeatherData(query)
 	if err != nil {
-		// Handle the error, send an error response in JSON format
 		apiErr, ok := err.(*models.ApiError)
 		if ok {
 			errorResponse := struct {
@@ -41,7 +37,6 @@ func WeatherHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Create a response JSON with the weather data
 	response := struct {
 		Temperature float64 `json:"temperature"`
 		Condition   string  `json:"condition"`
@@ -50,10 +45,8 @@ func WeatherHandler(w http.ResponseWriter, r *http.Request) {
 		Condition:   weatherData.Condition,
 	}
 
-	// Convert the response to JSON and send it
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(response); err != nil {
-		// Handle encoding error
 		http.Error(w, "Error encoding response", http.StatusInternalServerError)
 	}
 }

@@ -13,4 +13,4 @@ This app accepts a GET request with a query parameter to /weather endpoint and r
 
 ## Disclaimer
 
-The app is heavily commented since it was made to learn Go
+Work in progress
