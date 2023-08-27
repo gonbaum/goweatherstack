@@ -1,8 +1,11 @@
-### GO - Weather App API
+## GO - Weather App API
 
 Practice project made in Go that leverages WeatherStack API
 
 ## Usage
+
+To run this project you need a Weatherstack API key:
+https://weatherstack.com/
 
 Add WEATHER_API_KEY to .env file
 
